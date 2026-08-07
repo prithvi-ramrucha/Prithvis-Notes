@@ -1,3 +1,6 @@
+URL: https://prithvi-ramrucha.github.io/Prithvis-Notes/
+
+
 # just-the-docs-template
 
 This is a *bare-minimum* template to create a [Jekyll] site that:
