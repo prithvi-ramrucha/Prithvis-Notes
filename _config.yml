@@ -3,3 +3,9 @@ description: TBA
 theme: just-the-docs
 
 url: https:/prithvi-ramrucha.github.io/Prithvis-Notes
+
+just_the_docs:
+  custom_head: _includes/head_custom.html
+
+plugins:
+  - jekyll-include-cache
