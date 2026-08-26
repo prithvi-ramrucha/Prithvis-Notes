@@ -10,7 +10,7 @@ Last Edited: 17/08/2026
 
 ### 1. Introduction
 
-In the last few sections, we saw that a binomially distributed variable $X \sim \text{Bi} (n, p)$ becomes Poisson distributed in the limit $n \rightarrow \infty$ with small $p$. Although we will not show it in this section, it turns out that if $p$ (the probability of success) is not small, $X$ tends to the **normal distribution**. The visual shape of the normal distribution is well known and it often described as a _"bell-curve"_ (it is also often referred to as the Gaussian distribution)n
+In the last few sections, we saw that a binomially distributed variable $X \sim \text{Bi} (n, p)$ becomes Poisson distributed in the limit $n \rightarrow \infty$ with small $p$. Although we will not show it in this section, it turns out that the more general case is that $X$ tends to the **normal distribution** in the limit of large $n$ (assuming that the probability of success $p$ is not small). The visual shape of the normal distribution is well known and it often described as a _"bell-curve"_ (it is also often referred to as the Gaussian distribution).
 
 ![1786306153287](image/normal-distribution/1786306153287.png)
 
@@ -109,6 +109,31 @@ $$
 $$
 
 ### 4. Standardisation
+
+Often when demonstrating the properties of the normal distribution, we only consider the standard normal distribution. This is because we can shown that any generic normal distribution $\mathcal{N}(\sigma, \mu)$ can be turned into a unit normal $\mathcal{N}(1, 0)$ through standardisation. With this in mind, once a property is shown to hold for the unit normal, it can be assumed to also hold for the generic case. This is quite useful as working with the unit normal is often mathematically cleaner and less tedious. Recall that a random variable $X$ that can be expressed as a function of another variable $Z$ has the following relationship between their PDFs,
+
+$$
+f_Z(z) = \frac{dx}{dz} f_X(x)
+$$
+
+Let us say that $f_X(x)$ is the probability distribution associated with the generic normal distribution while $f_Z(z)$ is that of the unit normal. Standardisation involves performing the following transformation on $X$,
+
+$$
+Z = \frac{X - \mu}{\sigma} \Longrightarrow x = \sigma z + \mu
+$$
+
+where we have referred to $z$ as a z-score in the previous section. With this, it is straight forward to obtain $f_Z(z)$,
+
+$$
+\begin{aligned}
+f_Z(z)
+&= \cancel{\sigma} \frac{1}{\cancel{\sigma} \sqrt{2 \pi}}e^{-\frac{(\sigma z + \cancel{\mu - \mu})^2}{2\sigma^2}} \\
+&= \frac{1}{\sqrt{2 \pi}}e^{-\frac{\cancel{\sigma}^2 z^2}{2\cancel{\sigma^2}}} \\
+&= \frac{1}{\sqrt{2 \pi}}e^{-\frac{z^2}{2}}
+\end{aligned}
+$$
+
+Computing the derivative is trivial and the cancellations resulting from the substitution are apparent.  
 
 ### 5. The Three Sigma Rule
 
