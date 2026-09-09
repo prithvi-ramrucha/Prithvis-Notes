@@ -6,6 +6,7 @@ nav_order: 1
 ---
 
 # **Multi-Layer Peceptrons**
+Last Edited: 09/09/2026
 
 ### 1. Introduction
 
@@ -49,6 +50,37 @@ $$
 
 ### 2. Backprogation
 
-Constructing the MLP as a composite function of linear operations with non-linear activations is straight-forward. We know that $f(\mathbf{X})$ acts a universal function approximator and should theoretically map $X \rightarrow \hat{f}(\mathbf{X})$ given a sufficient number of training parameters. The difficult part is to figure out to optimise these training parameters $\Theta$ via backpropagation. Firstly, in this section, we will mathematically formulate backprogation 
+Constructing the MLP as a composite function of linear operations with non-linear activations is straight-forward. We know that $f(\mathbf{X})$ acts a universal function approximator and should theoretically map $X \rightarrow \hat{f}(\mathbf{X})$ given a sufficient number of training parameters. The difficult part is to figure out how to optimise these training parameters $\Theta$ via backpropagation. In this section, for the sake of conciseness, we will state and explain the reasoning behind the equations for backpropagation. We will dedicate the following chapter to deriving them from first principles as they are quite involved. Before we do this, we must make a couple of assumptions about the cost function $C$ of the network. [...]. With this in mind, the equations for backpropagation are,
+
+$$
+\boxed{
+\begin{aligned}
+\text{(1)}\quad
+\frac{\partial C}{\partial \mathbf{W}^{(l)}}
+&=
+(\mathbf{A}^{(l-1)})^T
+\underbrace{
+\left[
+\delta^{(l+1)}
+(\mathbf{W}^{(l+1)})^T
+\odot
+\sigma_l'(\mathbf{Z}^{(l)})
+\right]
+}_{\delta^{(l)}}
+\\[1em]
+\text{(2)}\quad
+\frac{\partial C}{\partial \mathbf{B}^{(l)}}
+&=
+\underbrace{
+\delta^{(l+1)}
+(\mathbf{W}^{(l+1)})^T
+\odot
+\sigma_l'(\mathbf{Z}^{(l)})
+}_{\delta^{(l)}}
+\end{aligned}
+}
+$$
+
+These equations are adapted to our ML convention of the weight matrix $\mathbf{W}$ and combine _BP2_ with _BP3_ and _BP4_ respectively from Nielsen's notes. While this equations appear to be absolutely monstrous at a first glance, we can break them down into understandable components. Let us start with (1), we can split the 
 
 See: https://neuralnetworksanddeeplearning.com/chap2?
