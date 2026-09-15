@@ -6,7 +6,7 @@ nav_order: 1
 ---
 
 # **Multi-Layer Peceptrons**
-Last Edited: 09/09/2026
+Last Edited: 15/09/2026
 
 ### 1. Introduction
 
@@ -48,7 +48,11 @@ $$
 \right)
 $$
 
-### 2. Backprogation
+### 2. Loss Function Assumptions
+
+### 3. The Hadamard Product
+
+### 4. Backprogation
 
 Constructing the MLP as a composite function of linear operations with non-linear activations is straight-forward. We know that $f(\mathbf{X})$ acts a universal function approximator and should theoretically map $X \rightarrow \hat{f}(\mathbf{X})$ given a sufficient number of training parameters. The difficult part is to figure out how to optimise these training parameters $\Theta$ via backpropagation. In this section, for the sake of conciseness, we will state and explain the reasoning behind the equations for backpropagation. We will dedicate the following chapter to deriving them from first principles as they are quite involved. Before we do this, we must make a couple of assumptions about the cost function $C$ of the network. [...]. With this in mind, the equations for backpropagation are,
 
@@ -81,6 +85,12 @@ $$
 }
 $$
 
-These equations are adapted to our ML convention of the weight matrix $\mathbf{W}$ and combine _BP2_ with _BP3_ and _BP4_ respectively from Nielsen's notes. While this equations appear to be absolutely monstrous at a first glance, we can break them down into understandable components. Let us start with (1), we can split the 
+These equations are adapted to our ML convention of the weight matrix $\mathbf{W}$ and combine _BP2_ with _BP3_ and _BP4_ respectively from Nielsen's notes. While these equations appear to be absolutely monstrous at a first glance, we can break them down into understandable components. Let us start with (1), we can split the the equation into two. The former part $(\mathbf{A}^{(l-1)})^T$ involves the preceeding layer while the latter part $\delta^{(l)}$ is found from considering following layer. To compute the how all the weights in the layer $l$ affect the cost $C$, we must consider the previous $(l-1)$ and following layer $(l+1)$ layer. Consider the diagram below,
+
+![alt text](image.png)
+
+We call $\delta^{(l)}$ the error propaged downwards and we calculate it from the error propagated to the following $(l+1)$ layer, $\delta^{(l+1)}$, its weights $(\mathbf{A}^{(l-1)})^T$ and the input $\mathbf{Z}^{(l)}$.
+
+
 
 See: https://neuralnetworksanddeeplearning.com/chap2?
