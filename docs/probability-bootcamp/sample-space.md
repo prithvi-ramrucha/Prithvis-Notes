@@ -10,13 +10,12 @@ Last Edited: 20/09/2026
 
 ### 1. Sample Space
 
-In probability theory, we consider **experiments** as an abstraction for a thing that can happen: flipping a coin, rolling a dice, selecting a card from a deck of them, etc. The result, observation or measurement at 
-the end of an experiment is called an **outcome**. We define a sample space $\Omega$ as the set of all possible outcomes that can result from an experiment. In other words, $\Omega$ contains all possiblities of an experiment that can occur. 
+In probability theory, we consider **experiments** as an abstraction for a thing that can happen: flipping a coin, rolling a dice, selecting a card from a deck of them, etc. The result, observation or measurement at the end of an experiment is called an **outcome**. We define a sample space $\Omega$ as the set of all possible outcomes that can result from an experiment. In other words, $\Omega$ contains all possiblities of an experiment that can occur. 
 
 {: .highlight}
-**Example:** Consider the experiment of flipping a coin; it has a two possible outcomes. They are the coin landing on heads $H$ or on tails $L$. In this case, the sample space is simply $\Omega = ( H, T )$.
+**Example:** Consider the experiment of flipping a coin; it has a two possible outcomes. The coin can land on heads $H$ or tails $T$. In this case, the sample space is simply $\Omega = ( H, T )$.
 
-There are no limits on the cardinality of $\Omega$. However, we will use examples where it is finite. Generally a finite sample space $\Omega$ is defined as,
+There are no limits on the cardinality of $\Omega$. However, we will use examples where it is finite. Generally a finite sample space $\Omega$ is written as,
 
 $\Omega = [ \omega_1, \omega_2, ..., \omega_N ]$
 
@@ -31,7 +30,7 @@ $$
 P(A) = \frac{n(A)}{n(\Omega)}
 $$
 
-where $n(A)$ is the number of elementray outcomes in event $A$ and $n(\Omega)$ is the total number of possible outcomes. In our case, $A$ can only occur once because we can only obtain a single heads from a coin flip. Likewise, $n(\Omega)=2$ since there are only two possibilities; heads or tails. Thus, $P(A) = 1/2$. It is important to realise that the calculation of $P(A)$ relies on the fact that,
+where $n(A)$ is the number of elementary outcomes in the set $A$ and $n(\Omega)$ is the total number of possible outcomes. In our case, $A$ can only occur once because we can only obtain a single heads from a coin flip. Likewise, $n(\Omega)=2$ since there are only two possibilities; heads or tails. Thus, $P(A) = 1/2$. It is important to realise that the calculation of $P(A)$ relies on the fact that,
 
 $$
 P(\omega_j) = \frac{1}{n(\Omega)}
@@ -60,3 +59,7 @@ P(A) = \frac{n(A)}{n(\Omega)} =  \frac{3}{4}
 $$
 
 where $A = [(H, T), (T, H), (T, T)]$.
+
+### 4. Modelling Real Systems
+
+So far we have discussed rolling die and flipping coins. We assumed that any elementary outcome was equally as likely as any other. But why? If we think about flipping a coin, it is a deterministic system because, given enough information, we can calculate whether it lands on heads or tails from the laws of physics. We could consider classical mechanics and account for air resistance or even deviations in the mass within the coin. However, to get hold of all this information every time the coin is flipped is extremely difficult. For this reason, we choose to model the process as random or stochastic.

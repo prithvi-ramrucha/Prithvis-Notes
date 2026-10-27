@@ -2,7 +2,7 @@
 title: Multi-Layer Peceptrons
 parent: Deep Learning From Scratch 
 layout: home
-nav_order: 1
+nav_order: 3
 ---
 
 # **Multi-Layer Peceptrons**

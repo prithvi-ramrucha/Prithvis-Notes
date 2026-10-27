@@ -2,7 +2,7 @@
 title: Expected Values
 parent: Probability Bootcamp
 layout: home
-nav_order: 2
+nav_order: 3
 ---
 
 # 1. Introduction

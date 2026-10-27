@@ -1,7 +1,7 @@
 ---
 title: From Zero to Quantum
 layout: home
-nav_order: 3
+nav_order: 4
 ---
 
 IBM's course: https://quantum.cloud.ibm.com/learning/en/courses/use-a-qc-today/build-and-run-your-first-quantum-program

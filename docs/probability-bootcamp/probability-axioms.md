@@ -7,4 +7,6 @@ nav_order: 3
 
 # **Kolmogorov's Probability Axioms**
 
-_Last Edited: 08/08/2026_
+_Last Edited: 21/10/2026_
+
+### Introduction
