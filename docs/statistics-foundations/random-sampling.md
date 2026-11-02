@@ -27,7 +27,17 @@ $$
 We call this the **population statistics**. Analgous to this is the **sample statistics** which includes the sample mean $\bar{x}_n$ and variance $\sigma_n^2$, 
 
 $$
-\bar{x}_n = \frac{1}{n} \sum_{i=1}^{n} x_i \quad \sigma_n^2 = \frac{1}{n} \sum_{i=1}^{n} (x_i - \mu)^2
+\bar{x}_n = \frac{1}{n} \sum_{i=1}^{n} x_i \quad \sigma_n^2 = \frac{1}{n} \sum_{i=1}^{n} (x_i - \bar{x}_n)^2
 $$
 
-Because we do not know the population statistics, infer them through the calculation of the sample statistics. 
+where we have used the set of observed values $\mathcal{S}$ (sample measurements). Because we do not know the population statistics, we infer them through the calculation of the sample statistics. As we take more and more samples where $n \rightarrow N$, we expect the sample mean and variance to converge to that of the population, assuming that $N$ is very large, such that $\bar{x}_n \rightarrow \mu$ and $\sigma_n \rightarrow \sigma$ repectively. Since our measurements $\mathcal{S}$ are randomly sampled from the population $\mathcal{P},$, we have to use **estimators**. This is because the value of $\bar{x}_n$ changes depending on the sample $\mathcal{S}$ generated. The estimator the sample mean is the random variable $\bar{X}_n$ given by,
+
+$$
+\bar{X}_n = \frac{1}{n} \sum_{i=1}^{n} X_i
+$$
+
+All random variables have an associated expectation value and variance; our estimator is no exception. Let us work out the expectation value of $\bar{X}_n$,
+
+
+[TBA] $\bar{X}_n \sim \mathcal{N}(\mu, \sigma/n)$ where its variance is $\text{Var}[\bar{X}_n] = \sigma/n$. This means that as we take more and more samples, the distribution of $\bar{X}_n$ becomes an increasing more narrow and peak-like on the population mean $\mu$. The spread of the peak is given by $\sigma/\sqrt{n}$. We say that $\bar{X}_n$ is a **unbiased** estimator of the population mean $\mu$ because $E[\bar{X}_n] = \mu$.
+
