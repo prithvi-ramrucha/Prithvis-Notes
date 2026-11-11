@@ -6,6 +6,7 @@ nav_order: 2
 ---
 
 # Random Sampling
+Last Edited: 11/11/2026
 
 ### 1. Population vs Sample
 The distinction between the population and the sample is important in statistics. Say that we want to find the average height of all human beings on Earth, to compute this average we would need to measure the height of each person in the entire worldwide population. Say that we have $N$ number of people in the human population, the heights would be the following set $\mathcal{P} = [x_1, x_2, ..., x_N]$. For practical reasons, this is not possible. Therefore, we should consider working with the sample instead. The simple (random) sample randomly draws from the population $\mathcal{S} = [X_1, X_2, ..., X_n]$ where $X_i$ is random variable and $n$ is the number of samples. Generally, the number of measurments in the sample is much smaller than that of the population $n < N$. The value of the random variable $X_i$ is determined from a random draw with replacement from the population $\mathcal{P}$. Mathematically, 
@@ -63,13 +64,36 @@ $$
 \begin{aligned}
 \text{Var}[\bar{X}_n] &= \text{Var} \left[ \sum_{i=1}^{n} X_i \right] \\
 &= \frac{1}{n^2} \text{Var} \left[ \sum_{i=1}^{n} X_i \right] \\
-&= \frac{1}{n^2} \sum_{i=1}^{n} \text{Var}[X_i] \\
+&= \frac{1}{n^2} \sum_{i=1}^{n} \text{Var}[X_i] \quad \text{(a)} \\
 &= \frac{1}{n^2} \sum_{i=1}^{n} \sum_{i=1}^{n} (x_i - \mu)^2 P(X_i = x_i) \\
 &= \frac{1}{n^2} \sum_{i=1}^{n} \left( \frac{1}{n} \sum_{i=1}^{n} (x_i - \mu)^2 \right) \\
 &= \frac{1}{n^2} \sum_{i=1}^{n} \sigma^2 = \frac{1}{n^2} (n\sigma^2) = \frac{\sigma^2}{n}
 \end{aligned}
 $$
 
-We recover the result $\text{Var}[\bar{X}_n] = \sigma^2/n$ which tell us that our estimate of the population becomes increase more accurate from the calculation of the sample mean with an increasing number of samples. The central limit theorem (CLT) gives a shape to the distribution of $\bar{X}_n$ and tells us that $\bar{X}_n \sim \mathcal{N}(\mu, \sigma/n)$. As we take more and more samples, larger $n$, the distribution of $\bar{X}_n$ becomes an increasing more narrow and peak-like on the population mean $\mu$. The spread of the peak, the standard deviation of the normal distribution is given by $\sigma/\sqrt{n}$.
+We recover the result $\text{Var}[\bar{X}_n] = \sigma^2/n$ which tells us that our estimate of the population becomes increasingly more accurate from the calculation of the sample mean when we take a larger number of samples. The central limit theorem (CLT) gives a shape to the distribution of $\bar{X}_n$ and tells us that $\bar{X}_n \sim \mathcal{N}(\mu, \sigma/n)$. For larger $n$, the distribution of $\bar{X}_n$ becomes increasing more narrow and peak-like on the population mean $\mu$. The spread of this this normal distribution, its standard deviation, is given by $\sigma/\sqrt{n}$. Before moving on, it is worth discussing the assumption of independence made in step (a). We assume that there is no covariance between all $X_i$; that they are independent random variables. This is true when $n$ is very large and we consider random sampling **with replacement**. However, when we do consider random sampling with replacement, this simplification does not hold. [...].
+
+Another estimator is $\hat{S_n^2}$ for the variance, 
+
+$$
+\hat{S} = \frac{1}{n} \sum_{n}^{i=1} (X_i - \bar{X_n})^2
+$$
+
+which is directly computed from the sample statistics. Calculating the expected value of this estimator is useful as it provides the bridge between the sample and population statistics.
+
+$$
+E[\hat{S_n^2}] = ... = \frac{(n-1) \sigma^2}{n}
+$$
 
 ### 3. Using The Estimators
+
+Now that we have established unbiased estimators for the mean and variance of the population using the sample data, 
+
+$$
+\bar{X_n} = \frac{1}{n} \sum_{i=1}^{n} X_i
+$$
+
+$$
+\hat{s_n^2} = \frac{1}{n-1} \sum_{i=1}^{n} (X_i - \bar{X_n})^2
+$$
+
