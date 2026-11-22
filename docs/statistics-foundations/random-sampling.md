@@ -76,7 +76,7 @@ We recover the result $\text{Var}[\bar{X}_n] = \sigma^2/n$ which tells us that o
 Another estimator is $\hat{S_n^2}$ for the variance, 
 
 $$
-\hat{S} = \frac{1}{n} \sum_{n}^{i=1} (X_i - \bar{X_n})^2
+\hat{S} = \frac{1}{n} \sum_{i=1}^{n} (X_i - \bar{X_n})^2
 $$
 
 which is directly computed from the sample statistics. Calculating the expected value of this estimator is useful as it provides the bridge between the sample and population statistics.
@@ -94,6 +94,19 @@ $$
 $$
 
 $$
-\hat{s_n^2} = \frac{1}{n-1} \sum_{i=1}^{n} (X_i - \bar{X_n})^2
+\hat{s_n^2} = \frac{1}{n-1} \sum_{i=1}^{n} (X_i - \bar{X_n})^2.
 $$
 
+We can use the estimators $\bar{X_n}$ and $\hat{s_n^2}$ interchangeably with the population mean $\mu$ and variance $\sigma^2$ respectively. This is almost always our only choice when working with sample data, because the population statistics are unknown. Consider the variance of the sample mean $\text{Var}[{\bar{X_n}}]$ in this context: 
+
+$$
+\text{Var}[{\bar{X_n}}] \approx \frac{\hat{s_n^2}}{n}.
+$$
+
+It can approximated using our estimator $\hat{s_n^2}$. But why is this useful to us? Say that in an experiment, we want to find the population mean $\mu$. The sample mean $\bar{X_n}$ is used to estimate it. Something we want to be sure about is how many samples $n$ do we need to get a good estimate for $\mu$? Let us consider the following condition,
+
+$$
+m\sqrt{\text{Var}[{\bar{X_n}}]} \leq \epsilon
+$$
+
+If this condition is composed: The values of $\bar{X_n}$ caculated over many random samples $\mathcal{S}$ with $n$ consisting of $n$ measurements should have a spread less than $\epsilon$. This "spread" is quantified by taking $m$ standard deviations. 
