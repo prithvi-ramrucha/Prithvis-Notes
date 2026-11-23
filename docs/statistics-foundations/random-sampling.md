@@ -6,7 +6,7 @@ nav_order: 2
 ---
 
 # Random Sampling
-Last Edited: 11/11/2026
+Last Edited: 22/11/2026
 
 ### 1. Population vs Sample
 The distinction between the population and the sample is important in statistics. Say that we want to find the average height of all human beings on Earth, to compute this average we would need to measure the height of each person in the entire worldwide population. Say that we have $N$ number of people in the human population, the heights would be the following set $\mathcal{P} = [x_1, x_2, ..., x_N]$. For practical reasons, this is not possible. Therefore, we should consider working with the sample instead. The simple (random) sample randomly draws from the population $\mathcal{S} = [X_1, X_2, ..., X_n]$ where $X_i$ is random variable and $n$ is the number of samples. Generally, the number of measurments in the sample is much smaller than that of the population $n < N$. The value of the random variable $X_i$ is determined from a random draw with replacement from the population $\mathcal{P}$. Mathematically, 
@@ -90,23 +90,43 @@ $$
 Now that we have established unbiased estimators for the mean and variance of the population using the sample data, 
 
 $$
-\bar{X_n} = \frac{1}{n} \sum_{i=1}^{n} X_i
+\begin{aligned}
+\bar{X}_n &= \frac{1}{n}\sum_{i=1}^{n}X_i
+\qquad &
+\hat{s}_n^2 &= \frac{1}{n-1}\sum_{i=1}^{n}(X_i-\bar{X}_n)^2
+\end{aligned}
 $$
 
-$$
-\hat{s_n^2} = \frac{1}{n-1} \sum_{i=1}^{n} (X_i - \bar{X_n})^2.
-$$
-
-We can use the estimators $\bar{X_n}$ and $\hat{s_n^2}$ interchangeably with the population mean $\mu$ and variance $\sigma^2$ respectively. This is almost always our only choice when working with sample data, because the population statistics are unknown. Consider the variance of the sample mean $\text{Var}[{\bar{X_n}}]$ in this context: 
+We can use the estimators $\bar{X_n}$ and $\hat{s_n^2}$ interchangeably with the population mean $\mu$ and variance $\sigma^2$ respectively. This is almost always our only choice when working with sample data, because the population statistics are unknown. Say that in an experiment, we want to find the population mean $\mu$. The sample mean $\bar{x_n}$ is used to estimate it. Its values will be scattered around the true population mean $\mu$ in accordance to the standard error $\sigma/\sqrt{n}$. Something we want to be sure about is how many samples $n$ do we need to get a good estimate for $\mu$? In other words, we want know how many measurements will produce a reliably accurate estimate of the true mean. Let us start with the following condition,
 
 $$
-\text{Var}[{\bar{X_n}}] \approx \frac{\hat{s_n^2}}{n}.
+m\sqrt{\text{Var}[{\bar{X_n}}]} \leq \epsilon.
 $$
 
-It can approximated using our estimator $\hat{s_n^2}$. But why is this useful to us? Say that in an experiment, we want to find the population mean $\mu$. The sample mean $\bar{X_n}$ is used to estimate it. Something we want to be sure about is how many samples $n$ do we need to get a good estimate for $\mu$? Let us consider the following condition,
+Here we enforce the condition that $m$ multiples of the standard error $\sqrt{\text{Var}[{\bar{X_n}}]}$ must be below some threshold $\epsilon$. When $m=3$ for example, if the condition is met, then the probability $\mathbf{P}$ that $\bar{X_n}$ will be a distance equal to or less than $\epsilon$ away from $\mu$ is, 
 
 $$
-m\sqrt{\text{Var}[{\bar{X_n}}]} \leq \epsilon
+\mathbf{P} \left( \vert \bar{X_n} - \mu \vert \leq \epsilon \right) = 0.997
 $$
 
-If this condition is composed: The values of $\bar{X_n}$ caculated over many random samples $\mathcal{S}$ with $n$ consisting of $n$ measurements should have a spread less than $\epsilon$. This "spread" is quantified by taking $m$ standard deviations. 
+Assuming that $\bar{X_n}$ is normally distributed (whether by default or due to the CLT with sufficiently large $n$). This is the 3-sigma confidence interval. Another common value is $m=1.96$ which gives $\mathbf{P} = 0.95$ that the calculated value of $\bar{X_n}$ will lie in the interval $[\mu - \epsilon, \mu + \epsilon]$. When the population variance $\sigma$ is known (almost never), we can extract a formula for calculating a bound on the number of measurements,
+
+$$
+\begin{aligned}
+m\sqrt{\operatorname{Var}[\bar{X}_n]} &\leq \epsilon \\
+\frac{m\sigma}{\sqrt{n}} &\leq \epsilon \Longrightarrow \boxed{n \geq \left(\frac{m\sigma}{\epsilon}\right)^2}
+\end{aligned}
+$$
+
+However, in experiment we must use the estimator for the variance. The condition is then, 
+
+$$
+\frac{m\hat{s}_n}{\sqrt{n}} \leq \epsilon
+$$
+
+We cannot simply solve for $n$ this time. Intuitively, one may have the idea of taking measurments one at a time and checking whether the condition is met each time. Only once the condition is met, the process of taking measurements is stopped. In the literature, this is called **sequential fixed-width confidence interval estimation** and was studied in great detail by Chow and Robbins in _On the Asymptotic Theory of Fixed-Width Sequential Confidence Intervals for the Mean_ (1965).
+
+
+### References
+
+1. On the Asymptotic Theory of Fixed-Width Sequential Confidence Intervals for the Mean. Chow and Robbins. 1965. URL: https://www.columbia.edu/~jd2736/publication/Seq_Sec.pdf?utm_source=chatgpt.com
