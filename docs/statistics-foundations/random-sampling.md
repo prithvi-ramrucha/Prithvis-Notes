@@ -129,4 +129,4 @@ We cannot simply solve for $n$ this time. Intuitively, one may have the idea of 
 
 ### References
 
-1. On the Asymptotic Theory of Fixed-Width Sequential Confidence Intervals for the Mean. Chow and Robbins. 1965. URL: https://www.columbia.edu/~jd2736/publication/Seq_Sec.pdf?utm_source=chatgpt.com
+1. On the Asymptotic Theory of Fixed-Width Sequential Confidence Intervals for the Mean. Chow and Robbins. 1965. URL: https://www.columbia.edu/~jd2736/publication/Seq_Sec.pdf
