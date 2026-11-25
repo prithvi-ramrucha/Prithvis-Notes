@@ -109,23 +109,50 @@ $$
 \mathbf{P} \left( \vert \bar{X_n} - \mu \vert \leq \epsilon \right) = 0.997
 $$
 
-Assuming that $\bar{X_n}$ is normally distributed (whether by default or due to the CLT with sufficiently large $n$). This is the 3-sigma confidence interval. Another common value is $m=1.96$ which gives $\mathbf{P} = 0.95$ that the calculated value of $\bar{X_n}$ will lie in the interval $[\mu - \epsilon, \mu + \epsilon]$. When the population variance $\sigma$ is known (almost never), we can extract a formula for calculating a bound on the number of measurements,
+Assuming that $\bar{X_n}$ is normally distributed (whether by default or due to the CLT with sufficiently large $n$). This is the 3-sigma confidence interval. Another common value is $z=1.96$ which gives $\mathbf{P} = 0.95$ that the calculated value of $\bar{X_n}$ will lie in the interval $[\mu - \epsilon, \mu + \epsilon]$. When the population variance $\sigma$ is known (almost never), we can extract a formula for calculating a bound on the number of measurements,
 
 $$
 \begin{aligned}
 m\sqrt{\operatorname{Var}[\bar{X}_n]} &\leq \epsilon \\
-\frac{m\sigma}{\sqrt{n}} &\leq \epsilon \Longrightarrow \boxed{n \geq \left(\frac{m\sigma}{\epsilon}\right)^2}
+\frac{m\sigma}{\sqrt{n}} &\leq \epsilon \Longrightarrow \boxed{n \geq \left(\frac{z\sigma}{\epsilon}\right)^2}
 \end{aligned}
 $$
 
 However, in experiment we must use the estimator for the variance. The condition is then, 
 
 $$
-\frac{m\hat{s}_n}{\sqrt{n}} \leq \epsilon
+\frac{z\hat{s}_n}{\sqrt{n}} \leq \epsilon
 $$
 
-We cannot simply solve for $n$ this time. Intuitively, one may have the idea of taking measurments one at a time and checking whether the condition is met each time. Only once the condition is met, the process of taking measurements is stopped. In the literature, this is called **sequential fixed-width confidence interval estimation** and was studied in great detail by Chow and Robbins in _On the Asymptotic Theory of Fixed-Width Sequential Confidence Intervals for the Mean_ (1965).
+We cannot simply solve for $n$ this time. Intuitively, one may have the idea of taking measurments one at a time and checking whether the condition is met each time. Only once the condition is met, the process of taking measurements is stopped. In the literature, this is called **sequential fixed-width confidence interval estimation** and was studied in great detail by Chow and Robbins in _On the Asymptotic Theory of Fixed-Width Sequential Confidence Intervals for the Mean_ (1965). This sequential algorithm can be written compactly as, 
 
+$$
+N = \text{inf} \{ n \geq n_0 : \frac{z\hat{s}_n}{\sqrt{n}} \leq \epsilon \}
+$$
+
+where $N$ is referred to as the stopping or halting time. It is simply the smallest number of measurements at which our confidence condition is met. The infimum notation extracts the smallest integer that belongs to the set. In our case, this is the lower bound. It is also straight-forward to construct pseudocode for this algorithm:
+
+```text
+n = n_0
+while True:
+    compute ŝ(n)
+    if z * ŝ(n) / sqrt(n) ≤ ε:
+        break
+    n <- n + 1
+return n
+```
+
+**Experiment** ([CODE](https://github.com/prithvi-ramrucha/statistics-experiments/blob/main/sequential-fixed-width-confidence-interval-estimation.ipynb)): We want to measure the average height of male adults in Mauritius by centimeters (cm). Let us assume that their heights are normally distributed in the population $\mathcal{P} = [x_1, x_2, ..., x_N]$ according to $\mathcal{N}(\mu = 173, \sigma = 7)$. Setting the half-width to $\epsilon = 0.5$ (we want the average height to the nearest cm), $z=1.96$ for a 95% confidence interval and $n_0 = 30$, we obtain the following results,
+
+![alt text](image.png)
+
+As we get close to the halting time $T=670$, the running sample mean stabilises within the interval $[\mu - \epsilon, \mu + \epsilon]$. Additionally, we observe that $\epsilon(n)$ is approximately an exponential function. Repeating the experiment for thousands of trials,
+
+![alt text](image-1.png)
+
+It is apparent that the stopping time $T$ is normally distributed. The probability that $\bar{X}_T$ was within the interval $[\mu - \epsilon, \mu + \epsilon]$ was also confirmed to match 95% confidence,
+
+![alt text](image-2.png)
 
 ### References
 
