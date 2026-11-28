@@ -14,28 +14,40 @@ _Has something changed?_ This is the main question that hypothesis testing aims 
 
 ### 2. A/B Testing Example
 
-Say that the average quantity of a product sold daily is $\mu_Q = 256$ before a marketing campaign. Everyday after the campaign begins for a couple weeks, the quantity of products sold is recorded. For this duration, the average quantity of products sold is $Q$ with a sample variance (unbiased) of $\hat{s}^2 = 1866$. We want to determine if $Q=288$ is a large enough difference from $\mu_Q$ such that it is statistically significant and the marketing campaign had an effect. Our intuition would be to consider how many standard errors from $\mu_Q$ the difference $Q - \mu_Q$ is,
+Say that the average quantity of a product sold daily is $\mu_Q = 256$ before a marketing campaign. Every day after the campaign begins for a couple weeks $n=14$, the quantity of products sold is recorded. For this duration, the average quantity of products sold is $Q=288$ with a sample variance (unbiased) of $\hat{s}^2 = 1866$. We want to determine if $Q$ is a large enough difference from $\mu_Q$ such that it is statistically significant and the marketing campaign had a positive effect in sales (alternate hypothesis $H_{\alpha}$). The null hypothesis $H_0$ is that the campaign had no effect. Our intuition would be to consider how many standard errors from $\mu_Q$ the difference $Q - \mu_Q$ is,
 
 $$
 \hat{Z} = \frac{\hat{Q} - \mu_Q}{\left( \frac{\sigma}{\sqrt{n}} \right)} = \frac{\sqrt{n}(\hat{Q} - \mu_Q)}{\sigma}
 $$
 
-where we have remember that we can approximate the random variable $\hat{Q}$ as being normally distributed such that $\hat{Q} \sim \mathcal{N}(\mu_Q, \sigma^2/n)$ when $n$ is sufficiently large. We divide the difference by the standard error $\sigma/\sqrt{n}$ so that $\hat{Z}$ is distrbuted in accordance with the standard normal $\mathcal{N}(0, 1)$. Because we do not know $\sigma$, we use the estimator from our sample $\hat{s}^2$ to calculate $\hat{Z}$,
+where we have remembered that we can approximate the random variable $\hat{Q}$ as being normally distributed such that $\hat{Q} \sim \mathcal{N}(\mu_Q, \sigma^2/n)$ when $n$ is sufficiently large. We divide the difference by the standard error $\sigma/\sqrt{n}$ so that $\hat{Z}$ is distrbuted in accordance with the standard normal $\mathcal{N}(0, 1)$. Because we do not know $\sigma$, we use the estimator from our sample $\hat{s}^2$ to calculate $\hat{Z}$,
 
 $$
 \Longrightarrow \hat{Z} = \frac{\sqrt{n}(\hat{Q} - \mu_Q)}{\hat{s}}
 $$
 
-Now we can find the probability of $\hat{Z}$ being over 
+Now we can find the probability of $\hat{Z}$ being over the value $q$ which is the standardised version of $Q$,
 
 $$
 q = \frac{\sqrt{n}(\hat{Q} - \mu_Q)}{\hat{s}} = \frac{\sqrt{14}(288 - 256)}{\sqrt{1866}} \approx 2.77
 $$
 
 $$
-p = P(Z \geq q) = 1 - \phi(q) \approx 1 - 0.9972 = 0.0028
+\begin{aligned}
+&\Longrightarrow P(\hat{Z} \geq q) \\
+&= 1 - \phi(q) \\
+&\approx 1 - 0.9972 \\
+&= 0.0028 \\
+&= p
+\end{aligned}
 $$
 
 When our $p$ value is less than or equal to some value $\alpha$, we accept the alternate hypothesis $H_{\alpha}$ and reject the null $H_0$. Typically, $\alpha=0.05$ and so there is a statistically significant different between $Q=288$ and $\mu_Q=256$ in our case.
 
 ### 3. A/B Simulation
+
+We can generalised our case study by writing, 
+
+$$
+\hat{Z} = \frac{\sqrt{n}(\hat{Q} - \mu_Q)}{\hat{s}_n} = \frac{R\sqrt{n}}{\lambda}
+$$
